@@ -1,0 +1,47 @@
+Request Spec
+Field Name | Data Structure | Explanation
+starRating | List<Integer> | desired star for hotels we want to filter
+priceRange | List<PriceFilter> | desired price range for hotels we want to filter
+locationBias | GeoLocation | can be set to boost hotels located certain km in a coordinate
+geoFilter | Geo | geo filtering to filter where the hotels are
+landmarkBoost | Geo | geo boost so that all hotels should only be near that landmark
+query | String | what the hotels name should fully or partially matched
+reviewParameterBoost | List<ParameterBoost> | certain criteria the hotels need to have
+
+PriceFilter
+Field Name | Data Structure | Explanation
+from | Integer | the minimum price for the hotels, if null then the hotels will not be filtered using minimum price
+to | Integer | the maximum price for the hotels,  if null then the hotels will not be filtered using maximum price
+
+Location
+Field Name | Data Structure | Explanation
+lat | Double | lattitude coordinate
+long | Double | longitude coordinate
+
+Geo
+Field Name | Data Structure | Explanation
+geoId | String | id of a geo location
+type | GeoType | enumeration of what kind of location is the geoId
+
+GeoType (enum)
+Possibility | Explanation
+geo | the location is a geo
+landmark | the location is a landmark
+
+ParameterBoost
+Field Name | Data Structure | Explanation
+parameter | ParamType | the hotel quality parameter we want to filter with minRating and maxRating field
+minRating | Integer | range 1 to 5, the minimum rating of the given parameter a hotel should have, if null then we don't filter hotels by given parameter minimum rating
+maxRating | Integer | range 1 to 5, the maximum rating a hotel should have, if null then we don't filter hotels by given parameter maximum rating
+
+ParamType (enum)
+Possibility | Explanation
+food_quality | the food quality of the hotel
+room_size | the room size of the hotel
+pool_access | the pool accessibility of the hotel
+buffet | the buffet quality of the hotel
+staff_nature | the staff friendliness of the hotel
+wifi_access | the wifi acess for the hotel
+ventilation | the ventilation quality of the hotel
+beach_access | the beach accessibility of the hotel
+car_parking | the car parking quality of the hotel
